@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ACT T04 Nombre y Apellido/s</title>
+        <link rel="stylesheet" href="index.css" />
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    </head>
+    <header>
+        <span>M09 - Actividad T04</span>
+    </header>
+    <body>
+        <section>
+            <button id="resetButton">Resetear página</button>
+            <script>
+                $(document).ready(function(){
+                    $("#resetButton").click(function(){
+                        location.reload();
+                    });
+                });
+            </script>
+            
+        </section>
+        <section>
+            <h2>
+                EJERCICIO1 - ESTILOS
+            </h2>
+            <nav class="selectOperation">
+                <div id="setDoubleSize">#setDoubleSize</div>
+                <div id="setBlueColor">#setBlueColor</div>
+                <div id="mov">#mov</div>
+            </nav>
+            <div>
+                <div id="divTarget"> DIV TARGET </div>
+
+            </div>
+            <script>
+                $(document).ready(function(){
+                    // 1.1. Al hacer doble clic sobre el elemento #setDoubleSize, duplique la anchura que tenga en ese momento #divTarget
+                    $("#setDoubleSize").click(function(){
+                        var currentWidth = $("#divTarget").width();
+                        $("#divTarget").width(currentWidth * 2);
+                    });
+            
+                    // 1.2. Al entrar el ratón encima de #setBlueColor, establezca su color de fondo a azul y al salir, lo vuelva a poner en blanco
+                    $("#setBlueColor").hover(function(){
+                        $(this).css("background-color", "blue");
+                    }, function(){
+                        $(this).css("background-color", "");
+                    });
+            
+                    // 1.3. Al hacer clic sobre #mov, el elemento #divTarget empezará a hacer una animación durante 3 segundos que lo desplazará hacia abajo y al volver a hacer clic, lo parará y #divTarget volverá a su posición original
+                    var isMoving = false;
+                    $("#mov").click(function(){
+                        if(!isMoving){
+                            $("#divTarget").animate({top: "+=100px"}, 3000);
+                            isMoving = true;
+                        } else {
+                            $("#divTarget").stop();
+                            isMoving = false;
+                        }
+                    });
+                });
+            </script>            
+        </section>
+        <hr>
+        <section>
+            <h2>EJERCICIO2 - DOM</h2>
+            <nav class="selectOperation">
+                <input type="text" id="text" placeholder="Introduce texto aquí"/>
+                <div id="addDiv"> #addDiv </div>
+            </nav>
+            <div id="domNodes">
+                <h4>!!ADD DIVS HERE!!!</h4>
+            </div>
+            <script>
+                $(document).ready(function(){
+                    var counter = 1; // Variable para contar los divs creados
+            
+                    // Acción al hacer clic en #addDiv
+                    $("#addDiv").click(function(){
+                        var text = $("#text").val(); // Obtener el texto del input #text
+                        var newDiv = $("<div>").addClass("addDiv").text(text + " " + counter); // Crear un nuevo div con la clase .addDiv y el texto deseado
+                        $("#domNodes").append(newDiv); // Agregar el nuevo div al contenedor #domNodes
+                        counter++; // Incrementar el contador
+                    });
+            
+                    // Acción al hacer clic en un div creado dinámicamente
+                    $(document).on("click", ".addDiv", function(){
+                        $(this).remove(); // Eliminar el div clicado
+                    });
+                });
+            </script>
+        </section>
+        <hr>
+        <section class="centrar">
+            <h2>EJERCICIO3 - SLIDER</h2>
+            <div class="contenedorSlider">
+                <div id="slider">
+                    <div><img src="imgs/"></div>
+                    <div><img src="imgs/"></div>
+                    <div><img src="imgs/"></div>
+                    <div><img src="imgs/"></div>    
+                    <div><img src="imgs/"></div>
+                    <div><img src="imgs/"></div>
+                    <div><img src="imgs/"></div>    
+                    <div><img src="imgs/"></div>
+                    <div><img src="imgs/"></div>
+                </div>
+            </div>
+        </section>
+    </body>
+    <footer>
+        <span>&#169; &nbsp;</span> 
+        <span>Jon Ander Incera Moreno</span> 
+    </footer>
+</html>
